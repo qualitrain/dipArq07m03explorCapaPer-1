@@ -15,25 +15,25 @@ public class Cliente {
     @Column(name = "cli_id_cliente")
     private Long id;
 
-    @Column(name = "cli_nombre", nullable = false)
+    @Column(name = "cli_nombre", nullable = false, length = 150)
     private String nombre;
 
-    @Column(name = "cli_email")
+    @Column(name = "cli_email", length = 150)
     private String email;
 
-    @Column(name = "cli_telefono")
+    @Column(name = "cli_telefono", length = 20)
     private String telefono;
 
-    @Column(name = "cli_direccion_fiscal")
+    @Column(name = "cli_direccion_fiscal", length = 255)
     private String direccionFiscal;
 
-    @Column(name = "cli_direccion_entrega")
+    @Column(name = "cli_direccion_entrega", length = 255)
     private String direccionEntrega;
 
-    @Column(name = "cli_saldo", nullable = false)
+    @Column(name = "cli_saldo", nullable = false, precision = 12, scale = 2)
     private BigDecimal saldo;
 
-    @Column(name = "cli_limite_credito")
+    @Column(name = "cli_limite_credito", precision = 12, scale = 2)
     private BigDecimal limiteCredito;
 
     @OneToMany(mappedBy = "cliente")

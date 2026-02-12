@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import mx.com.qtx.dipArq07m03explorCapaPer.servicios.dto.CategoriaDTO;
 import mx.com.qtx.dipArq07m03explorCapaPer.servicios.dto.CategoriaProductoDTO;
 
-@Component
+//@Component
 public class ProbadorCapaDatos implements CommandLineRunner{
 	private static Logger log = LoggerFactory.getLogger(ProbadorCapaDatos.class);
 	
@@ -20,6 +20,7 @@ public class ProbadorCapaDatos implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 		CategoriaDTO catDto = this.gestorDatos.leerCategoriaXID(5);
 		log.info("Categoria leída: " + catDto);
 		List<CategoriaProductoDTO> lstProdCats = this.gestorDatos.leerProductosConCategorias(1);

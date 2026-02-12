@@ -14,10 +14,10 @@ public class Rol {
     @Column(name = "rol_id_rol")
     private Integer id;
 
-    @Column(name = "rol_nombre", nullable = false)
+    @Column(name = "rol_nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "rol_descripcion")
+    @Column(name = "rol_descripcion", length = 255)
     private String descripcion;
 
     @OneToMany(mappedBy = "rol")

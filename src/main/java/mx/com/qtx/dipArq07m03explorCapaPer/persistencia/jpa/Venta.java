@@ -1,6 +1,7 @@
 package mx.com.qtx.dipArq07m03explorCapaPer.persistencia.jpa;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,20 +16,26 @@ public class Venta {
     @Column(name = "ven_num_venta")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "ven_id_cliente")
-    private Cliente cliente;
+    @Column(name = "ven_fecha", nullable = false)
+    private LocalDate fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "ven_id_empleado_vendedor")
+    @Column(name = "ven_direccion_entrega", length = 255)
+    private String direccionEntrega;
+
+    @Column(name = "ven_telefono", length = 20)
+    private String telefono;
+
+    @Column(name = "ven_saldo", nullable = false, precision = 12, scale = 2)
+    private BigDecimal saldo;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ven_id_empleado_vendedor", nullable = false)
     private Empleado vendedor;
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
-    private List<DetalleVenta> detalles = new ArrayList<>();
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ven_id_cliente", nullable = false)
+    private Cliente cliente;
 
-    public BigDecimal calcularTotal() {
-        return detalles.stream()
-                .map(DetalleVenta::calcularImporte)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detalles = new ArrayList<>();
 }

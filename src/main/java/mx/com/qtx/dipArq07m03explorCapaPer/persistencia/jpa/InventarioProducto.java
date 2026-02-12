@@ -9,12 +9,12 @@ import jakarta.persistence.*;
 public class InventarioProducto {
 
     @Id
-    @Column(name = "inv_id_producto")
+    @Column(name = "inv_id_producto", length = 50)
     private String id;
 
     @MapsId
-    @OneToOne
-    @JoinColumn(name = "inv_id_producto")
+    @OneToOne(optional = false)
+    @JoinColumn(name = "inv_id_producto", nullable = false)
     private Producto producto;
 
     @Column(name = "inv_existencia", nullable = false)
