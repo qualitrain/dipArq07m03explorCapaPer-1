@@ -26,7 +26,7 @@ public class GestorVentasJPAmanual implements IGestorDatosAltoNivel {
 	}
 	
 	@Override
-//	@Transactional
+	@Transactional
 	public Categoria leerCategoriaXID_conProductos(int id)  {
 		log.info("La Implementacion del entity manager es :" + this.em.getClass().getName());
 		Categoria categoria = this.em.find(Categoria.class, id);
